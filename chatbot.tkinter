@@ -1,0 +1,36 @@
+# chatbot.tkinter.py
+
+import tkinter as tk
+from tkinter import scrolledtext
+from chatbot_simple import get_bot_response
+
+def send_message():
+    user_input = user_entry.get()
+    if user_input.strip() == "":
+        return
+    chat_area.config(state='normal')
+    chat_area.insert(tk.END, "You: " + user_input + '\n')
+    bot_response = get_bot_response(user_input)
+    chat_area.insert(tk.END, "Bot: " + bot_response + '\n\n')
+    chat_area.config(state='disabled')
+    user_entry.delete(0, tk.END)
+    chat_area.see(tk.END)
+
+# GUI setup
+window = tk.Tk()
+window.title("ChatBot")
+window.geometry("450x550")
+window.configure(bg="#f4f4f4")
+
+chat_area = scrolledtext.ScrolledText(window, wrap=tk.WORD, font=("Helvetica", 12), bg="white", fg="black")
+chat_area.config(state='disabled')
+chat_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+user_entry = tk.Entry(window, font=("Helvetica", 12))
+user_entry.pack(padx=10, pady=10, fill=tk.X)
+user_entry.bind("<Return>", lambda event: send_message())
+
+send_button = tk.Button(window, text="Send", command=send_message, bg="#4CAF50", fg="white", font=("Helvetica", 12))
+send_button.pack(padx=10, pady=(0, 10))
+
+window.mainloop()
