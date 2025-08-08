@@ -35,7 +35,10 @@ if "messages" not in st.session_state:
 # Display previous messages
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
+        if msg["role"] == "user":
+            st.markdown(f"<strong>user</strong>: {msg['content']}", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<strong>assistant</strong>: {msg['content']}", unsafe_allow_html=True)
 
 # Get user input
 user_input = st.chat_input("Say something...")
@@ -44,10 +47,10 @@ if user_input:
     # Display user message
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
-        st.markdown(user_input)
+        st.markdown(f"<strong>user</strong>: {user_input}", unsafe_allow_html=True)
 
     # Get and display bot response
     response = get_bot_response(user_input)
     st.session_state.messages.append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
-        st.markdown(response)
+        st.markdown(f"<strong>assistant</strong>: {response}", unsafe_allow_html=True)
