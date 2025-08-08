@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # Chatbot logic function
 def get_bot_response(user_input):
@@ -18,6 +19,12 @@ def get_bot_response(user_input):
 
 # Set page title
 st.set_page_config(page_title="Simple ChatBot")
+
+# Inject custom CSS for improved appearance
+css_path = os.path.join(os.path.dirname(__file__), "chatbot_style.css")
+if os.path.exists(css_path):
+    with open(css_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.title("💬 Simple Python ChatBot")
 
