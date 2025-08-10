@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Python ChatBot</title>
+    <link rel="stylesheet" href="chatbot_style.css">
+    <style>
+        body { margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 20px; box-shadow: 0 2px 16px #228B2230; padding: 32px 24px; }
+        h1 { color: #228B22; font-family: 'Poppins', Arial, sans-serif; text-align: center; }
+        .chat-area { min-height: 300px; margin-bottom: 20px; }
+        .bubble { border-radius: 20px; padding: 12px 18px; margin-bottom: 10px; max-width: 80%; font-family: 'Poppins', Arial, sans-serif; font-size: 1.05rem; }
+        .user { background: #eafaf1; color: #111; border: 1px solid #d6f5e3; margin-left: auto; text-align: right; }
+        .bot { background: #fff; color: #111; border: 1px solid #f0e6d2; margin-right: auto; text-align: left; }
+        .input-row { display: flex; gap: 8px; }
+        input[type=text] { flex: 1; border-radius: 12px; border: 1px solid #e0e0e0; padding: 10px 16px; font-size: 1.05rem; background: #fff; color: #111; font-family: 'Poppins', Arial, sans-serif; }
+        button { background: #228B22; color: #fff; border: none; border-radius: 12px; padding: 8px 22px; font-weight: 600; font-family: 'Poppins', Arial, sans-serif; font-size: 1.05rem; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #145214; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💬 Simple Python ChatBot</h1>
+        <div id="chat" class="chat-area"></div>
+        <form id="chat-form" class="input-row" autocomplete="off">
+            <input type="text" id="user-input" placeholder="Say something..." required />
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script>
+        const chat = document.getElementById('chat');
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-input');
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = 'bubble ' + sender;
+            div.textContent = text;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function botResponse(userText) {
+            const text = userText.toLowerCase();
+            if (text === 'bye') return "Goodbye! Have a nice day.";
+            if (text.includes('hello') || text.includes('hi')) return "Hello there!";
+            if (text.includes('how are you')) return "I'm just a bot, but I'm doing well. Thanks!";
+            if (text.includes('name')) return "I'm called ChatBot.";
+            if (text.includes('help')) return "You can ask me things like 'hello', 'how are you', or 'bye'.";
+            return "I'm not sure how to respond to that.";
+        }
+
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            const userText = input.value.trim();
+            if (!userText) return;
+            addMessage(userText, 'user');
+            input.value = '';
+            setTimeout(() => {
+                const response = botResponse(userText);
+                addMessage(response, 'bot');
+            }, 400);
+        };
+    </script>
+</body>
+</html>

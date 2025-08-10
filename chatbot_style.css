@@ -7,9 +7,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-    background: #fdf6ee;
+    background: #111;
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-    color: #111;
+    color: #e0ffe0;
 }
 
 /* Minimal rounded chat bubbles */
@@ -17,10 +17,10 @@ body {
     border-radius: 20px;
     margin-bottom: 14px;
     padding: 14px 18px;
-    box-shadow: 0 2px 8px 0 rgba(34,34,34,0.04);
-    background: #fff;
-    border: 1px solid #f0e6d2;
-    color: #111;
+    box-shadow: 0 2px 8px 0 rgba(34,34,34,0.10);
+    background: #181818;
+    border: 1px solid #228B22;
+    color: #e0ffe0;
     max-width: 80%;
     font-size: 1.05rem;
     transition: box-shadow 0.2s;
@@ -29,35 +29,35 @@ body {
 /* User message bubble (right, light green) */
 [data-testid="stChatMessage"]:has([data-testid="stMarkdownContainer"]:has(strong:contains('user'))),
 [data-testid="stChatMessage"]:has([data-testid="stMarkdownContainer"]:has(span:contains('user'))){
-    background: #eafaf1;
-    color: #111;
+    background: linear-gradient(135deg, #228B22 60%, #145214 100%);
+    color: #fff;
     border-radius: 20px 20px 4px 20px;
-    border: 1px solid #d6f5e3;
+    border: 1px solid #228B22;
     margin-left: auto;
     margin-right: 0;
-    box-shadow: 0 1px 4px 0 #d6f5e355;
+    box-shadow: 0 1px 8px 0 #228B22cc;
 }
 
 /* Assistant message bubble (left, white) */
 [data-testid="stChatMessage"]:has([data-testid="stMarkdownContainer"]:has(strong:contains('assistant'))),
 [data-testid="stChatMessage"]:has([data-testid="stMarkdownContainer"]:has(span:contains('assistant'))){
-    background: #fff;
-    color: #111;
+    background: #181818;
+    color: #e0ffe0;
     border-radius: 20px 20px 20px 4px;
-    border: 1px solid #f0e6d2;
+    border: 1px solid #228B22;
     margin-right: auto;
     margin-left: 0;
-    box-shadow: 0 1px 4px 0 #f0e6d255;
+    box-shadow: 0 1px 8px 0 #111a;
 }
 
 /* Chat input */
 [data-testid="stChatInput"] input {
     border-radius: 12px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #228B22;
     padding: 10px 16px;
     font-size: 1.05rem;
-    background: #fff;
-    color: #111;
+    background: #222;
+    color: #e0ffe0;
     margin-bottom: 8px;
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
     outline: none;
@@ -70,30 +70,30 @@ body {
 
 /* Minimal send button */
 button[kind="primary"] {
-    background: #228B22;
-    color: #fff;
+    background: linear-gradient(90deg, #228B22 0%, #39ff14 100%);
+    color: #111;
     border: none;
     border-radius: 12px;
     padding: 8px 22px;
     font-weight: 600;
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
     font-size: 1.05rem;
-    box-shadow: none;
+    box-shadow: 0 0 12px 2px #39ff14, 0 2px 8px #000a;
     transition: background 0.2s, box-shadow 0.2s;
     outline: none;
 }
 button[kind="primary"]:hover, button[kind="primary"]:focus {
-    background: #145214;
+    background: linear-gradient(90deg, #39ff14 0%, #228B22 100%);
     color: #fff;
-    box-shadow: 0 2px 8px #228B2230;
+    box-shadow: 0 0 24px 4px #39ff14, 0 2px 16px #000a;
 }
 
 /* Title styling */
 [data-testid="stHeader"] h1 {
-    color: #228B22;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    color: #39ff14;
+    font-weight: 700;
+    letter-spacing: 1px;
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-    text-shadow: none;
+    text-shadow: 0 2px 8px #228B22cc;
     background: none;
 }
